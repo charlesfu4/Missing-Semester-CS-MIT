@@ -1,5 +1,5 @@
 #!/bin/bash
 
 polo () {
-    cd $tmpd || exit
+    cd "$TMP_DIR" || exit
 }

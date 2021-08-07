@@ -1,5 +1,6 @@
 #!/bin/bash
 
 macro () {
-    tmpd=$(pwd)
+    TMP_DIR=$(pwd)
+    export TMP_DIR 
 }
