@@ -47,3 +47,11 @@ echo "Everything went according to plan"
 ```
 
 - Run the capture.sh by `./capture.sh`
+
+## Make a zip from the recursively found html files
+
+- Write a command that recursively finds all HTML files in the folder and makes a zip with them
+
+```shell
+find . -name '*.html' -print0 | xargs -0 tar cf htmls.tar
+```
