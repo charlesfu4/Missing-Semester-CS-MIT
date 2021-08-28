@@ -45,3 +45,9 @@ comm -13 existchars duochars
 ```
 
 Totally: 544
+
+## 3. Why not use sed > to in-place substitute?
+
+It is not recommended to give a zero-length extension when in-place editing files, as you risk corruption or partial content in situations where disk space is exhausted, etc.
+
+Use -i or -I to implement in-place substitution
