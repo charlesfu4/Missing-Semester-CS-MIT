@@ -14,11 +14,11 @@ cat words | tr '[A-Z]' '[a-z]' | grep '^.*a.*a.*a.*[^a]$'
 cat words | tr '[A-Z]' '[a-z]' | grep '^.*a.*a.*a.*[^a]$' | sed -E 's/^.*(.{2})$/\1/' | sort | uniq -c | sort -nk1,1 | tail -n3
 ```
 
-counts | chars 
--------------
- 637   | ae
- 763   | an
-1039   | al
+|counts | chars|
+|-------|------|
+| 637   | ae   |
+| 763   | an   |
+|1039   | al   |
 
 - How many of those two-letter combinations are there?
 
