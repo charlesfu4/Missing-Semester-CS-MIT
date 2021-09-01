@@ -51,3 +51,26 @@ Totally: 544
 It is not recommended to give a zero-length extension when in-place editing files, as you risk corruption or partial content in situations where disk space is exhausted, etc.
 
 Use -i or -I to implement in-place substitution
+
+## 4. Find your average, median, and max system boot time over the last ten boots
+
+- Grep the boot time and the shut down time on mac
+
+```shell
+log show | grep -E '=== system boot:.*| Previous shutdown cause:.*' | sort -r
+```
+
+- Example of converting date to unix timestamp
+
+```shell
+echo '2021-08-09 14:28:11.000000+0200' | sed -E 's/^(.*)\..*((\+|\-).*)$/\1\2/' | xargs -0 date -jf "%Y-%m-%d %H:%M:%S%z" +%s
+```
+
+- Combine above two so the unix time stamps listed out in a boot-shutdown order
+
+```shell
+log show | grep -E '=== system boot:.*| Previous shutdown cause:.*' | sort -r | tail -n20 | awk 'system("date -jf \"%Y-%m-%d %H:%M:%S\" +%s \""$1 $2"\"")' 2> /dev/null
+```
+
+- Calculation of the avg, median, and max
+
