@@ -74,3 +74,14 @@ log show | grep -E '=== system boot:.*| Previous shutdown cause:.*' | sort -r | 
 
 - Calculation of the avg, median, and max
 
+```shell
+log show | grep -E '=== system boot:.*| Previous shutdown cause:.*' | sort -r | tail -n20 | awk 'system("date -jf \"%Y-%m-%d %H:%M:%S\" +%s \""$1 $2"\"")' 2> /dev/null | paste -sd-, - | sed 's/\,/\n/g' | bc -l | R --slave -e 'x <- scan(file="stdin", quiet=TRUE); summary(x)' 2> /dev/null
+```
+
+- Result(ms)
+
+|Min.   |1st Q.|Median|Mean  |3rd Q.|Max   |
+|-------|------|------|------|------|------|
+|0      |33766 | 60350|105118|122196|359932|
+
+The results are very low due to battery issue of my computer...
